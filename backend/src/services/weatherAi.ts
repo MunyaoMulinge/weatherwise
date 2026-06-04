@@ -125,7 +125,7 @@ export async function analyzeTreeImage(
   const res = await fetch(`${BASE_URL}/trees/analyze`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${API_KEY}`,
+      'Authorization': `Bearer ${getApiKey()}`,
     },
     body: formData as any,
   });
