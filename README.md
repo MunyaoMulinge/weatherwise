@@ -2,8 +2,8 @@
 
 A clean, responsive full-stack weather dashboard that integrates with the [Weather-AI](https://weather-ai.co) developer platform. Features real-time weather forecasts, AI-powered insights, interactive maps, usage analytics, and dark mode — built to demonstrate solid API integration, caching strategy, and modern frontend architecture.
 
-**Live Demo:** [https://weatherwise-demo.vercel.app](https://weatherwise-demo.vercel.app) *(update after deployment)*  
-**API Base:** [https://weatherwise-api.onrender.com](https://weatherwise-api.onrender.com) *(update after deployment)*  
+**Live Demo:** [https://weatherwise-lilac.vercel.app](https://weatherwise-lilac.vercel.app)  
+**API Base:** [https://weatherwise-wuwy.onrender.com](https://weatherwise-wuwy.onrender.com)  
 **API Docs:** [https://weather-ai.co/docs](https://weather-ai.co/docs)
 
 ---
