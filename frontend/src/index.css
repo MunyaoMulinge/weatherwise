@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+
+  body.dark {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  .dark .glass-card {
+    @apply bg-gray-800/80 border-gray-700/50;
+  }
+
+  .weather-gradient-sunny {
+    @apply bg-gradient-to-br from-amber-400 to-orange-500;
+  }
+
+  .weather-gradient-cloudy {
+    @apply bg-gradient-to-br from-gray-400 to-slate-500;
+  }
+
+  .weather-gradient-rainy {
+    @apply bg-gradient-to-br from-blue-400 to-blue-600;
+  }
+
+  .weather-gradient-stormy {
+    @apply bg-gradient-to-br from-indigo-500 to-purple-600;
+  }
+
+  .weather-gradient-snowy {
+    @apply bg-gradient-to-br from-slate-300 to-slate-400;
+  }
+}
+
+/* Leaflet map styles */
+.leaflet-container {
+  border-radius: 0.75rem;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}

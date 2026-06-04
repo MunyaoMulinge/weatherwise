@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: weatherwise-backend
+    runtime: node
+    region: frankfurt
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: CORS_ORIGIN
+        value: https://weatherwise-frontend.onrender.com
+      - key: WEATHER_AI_API_KEY
+        sync: false
+    healthCheckPath: /health
+
+  - type: static
+    name: weatherwise-frontend
+    runtime: static
+    region: frankfurt
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://weatherwise-backend.onrender.com
