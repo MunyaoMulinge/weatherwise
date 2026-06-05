@@ -7,6 +7,12 @@ interface CurrentWeatherProps {
 }
 
 export default function CurrentWeather({ current }: CurrentWeatherProps) {
+  const hasHumidity = current.humidity > 0;
+  const hasWind = current.wind_speed > 0;
+  const hasVisibility = current.visibility > 0;
+  const hasPressure = current.pressure > 0;
+  const hasFeelsLike = current.feels_like !== current.temp && current.feels_like > 0;
+
   return (
     <div className="glass-card rounded-2xl p-6 sm:p-8">
       <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6">
@@ -30,10 +36,12 @@ export default function CurrentWeather({ current }: CurrentWeatherProps) {
             <p className="text-lg text-gray-600 dark:text-gray-300 capitalize mt-1">
               {current.description || current.condition}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
-              <Thermometer className="w-4 h-4" />
-              Feels like {Math.round(current.feels_like)}°C
-            </p>
+            {hasFeelsLike && (
+              <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                <Thermometer className="w-4 h-4" />
+                Feels like {Math.round(current.feels_like)}°C
+              </p>
+            )}
           </div>
         </div>
 
@@ -68,28 +76,36 @@ export default function CurrentWeather({ current }: CurrentWeatherProps) {
         </div>
       </div>
 
-      {/* Details grid */}
+      {/* Details grid — only show cards for data that exists */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <DetailCard
-          icon={<Droplets className="w-5 h-5 text-blue-500" />}
-          label="Humidity"
-          value={`${current.humidity}%`}
-        />
-        <DetailCard
-          icon={<Wind className="w-5 h-5 text-teal-500" />}
-          label="Wind"
-          value={`${current.wind_speed} km/h`}
-        />
-        <DetailCard
-          icon={<Eye className="w-5 h-5 text-purple-500" />}
-          label="Visibility"
-          value={`${(current.visibility / 1000).toFixed(1)} km`}
-        />
-        <DetailCard
-          icon={<Gauge className="w-5 h-5 text-rose-500" />}
-          label="Pressure"
-          value={`${current.pressure} hPa`}
-        />
+        {hasHumidity && (
+          <DetailCard
+            icon={<Droplets className="w-5 h-5 text-blue-500" />}
+            label="Humidity"
+            value={`${current.humidity}%`}
+          />
+        )}
+        {hasWind && (
+          <DetailCard
+            icon={<Wind className="w-5 h-5 text-teal-500" />}
+            label="Wind"
+            value={`${current.wind_speed} km/h`}
+          />
+        )}
+        {hasVisibility && (
+          <DetailCard
+            icon={<Eye className="w-5 h-5 text-purple-500" />}
+            label="Visibility"
+            value={`${(current.visibility / 1000).toFixed(1)} km`}
+          />
+        )}
+        {hasPressure && (
+          <DetailCard
+            icon={<Gauge className="w-5 h-5 text-rose-500" />}
+            label="Pressure"
+            value={`${current.pressure} hPa`}
+          />
+        )}
       </div>
     </div>
   );

@@ -41,20 +41,22 @@ export default function DailyForecast({ forecast }: DailyForecastProps) {
             </p>
 
             {/* Precipitation */}
-            <div className="flex items-center gap-1 text-blue-500">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z" />
-              </svg>
-              <span className="text-sm font-medium">{Math.round(day.precipitation_chance * 100)}%</span>
-            </div>
+            {day.precipitation_chance > 0 && (
+              <div className="flex items-center gap-1 text-blue-500">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z" />
+                </svg>
+                <span className="text-sm font-medium">{Math.round(day.precipitation_chance)}%</span>
+              </div>
+            )}
 
             {/* Temps */}
             <div className="flex items-center gap-3 w-24 flex-shrink-0 justify-end">
               <span className="font-semibold text-gray-900 dark:text-white">
-                {Math.round(day.temp_high)}°
+                {day.temp_high > 0 ? `${Math.round(day.temp_high)}°` : '--'}
               </span>
               <span className="text-gray-400 dark:text-gray-500">
-                {Math.round(day.temp_low)}°
+                {day.temp_low > 0 ? `${Math.round(day.temp_low)}°` : '--'}
               </span>
             </div>
           </div>

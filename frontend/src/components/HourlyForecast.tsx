@@ -61,7 +61,7 @@ export default function HourlyForecast({ hourly }: HourlyForecastProps) {
             <WeatherIcon
               condition={hour.condition}
               icon={hour.icon}
-              size={24}
+              size={28}
               className="text-blue-500"
             />
             <p className="font-semibold text-gray-900 dark:text-white">
@@ -69,7 +69,7 @@ export default function HourlyForecast({ hourly }: HourlyForecastProps) {
             </p>
             {hour.precipitation_chance > 0 && (
               <p className="text-xs text-blue-500">
-                {Math.round(hour.precipitation_chance * 100)}%
+                {Math.round(hour.precipitation_chance)}%
               </p>
             )}
           </div>
